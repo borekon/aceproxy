@@ -15,6 +15,9 @@ Docker
 
 AceProxy: Ace Stream HTTP Proxy
 ===============================
+
+This is a merge between https://github.com/AndreyPavlenko/aceproxy and https://github.com/unsignedint/aceproxy
+
 AceProxy allows you to watch [Ace Stream](http://acestream.org/) live streams or BitTorrent files over HTTP.
 It's written in Python + gevent and should work on both Linux and Windows (Mac OS should work too, but was not tested)
 
