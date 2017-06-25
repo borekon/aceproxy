@@ -12,9 +12,10 @@ RUN pip install -r /app/requirements.txt && \
   rm -rf /var/lib/apt/lists/* && \
   echo '\
 #!/bin/sh
-echo "=== bound to: $(hostname -I) ===" \n\
+echo "=== bound to port 8000: $(hostname -I) ===" \n\
 python /app/acehttp.py    \n\
 ' > /run.sh && chmod +x /run.sh
 
+EXPOSE 8000
 ENTRYPOINT ["/bin/sh", "/run.sh"]
 

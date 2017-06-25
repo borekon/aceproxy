@@ -1,3 +1,18 @@
+Docker
+======
+
+1. Build the image
+
+`docker build -t aceproxy .`
+
+2. Launch instance
+
+`docker run --rm -Pi aceproxy`
+
+3. Connect to IP of docker machine and port from `docker ps` output
+
+4. Watch, VLC remote with: http://<HOST>:<PORT>/pid/<HASH>/stream.mp4
+
 AceProxy: Ace Stream HTTP Proxy
 ===============================
 AceProxy allows you to watch [Ace Stream](http://acestream.org/) live streams or BitTorrent files over HTTP.
