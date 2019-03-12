@@ -1,21 +1,29 @@
-FROM ubuntu:trusty
+FROM ubuntu:bionic
 
-RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y wget && \
-  bash -c "echo 'deb http://repo.acestream.org/ubuntu/ trusty main' | tee /etc/apt/sources.list.d/acestream.list && wget -O - http://repo.acestream.org/keys/acestream.public.key | apt-key add -" && \
-  apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip python-dev acestream-engine && \
-  mkdir /app
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH=/opt/acestream:$PATH
 
 COPY . /app
-RUN pip install -r /app/requirements.txt && \
+
+RUN apt-get -y update && \
+  apt-get -y upgrade && \
+  apt-get -y install -y wget python python-pip python-dev python-requests python-setuptools python-m2crypto python-apsw libssl1.0.0 libssl-dev && \
+  mkdir -p /opt/acestream && \
+  cd /opt/acestream && \
+  wget http://acestream.org/downloads/linux-beta/acestream_3.1.35_ubuntu_18.04_x86_64.tar.gz && \
+  tar -xvzf acestream_3.1.35_ubuntu_18.04_x86_64.tar.gz && \
+  rm -f acestream_3.1.35_ubuntu_18.04_x86_64.tar.gz && \
+  pip install -r /app/requirements.txt && \
+  apt-get -y remove -y wget python-pip python-dev && \
   rm -rf /var/lib/apt/lists/* && \
-  echo '\
-#!/bin/sh
-echo "=== bound to port 8000: $(hostname -I) ===" \n\
-python /app/acehttp.py    \n\
-' > /run.sh && chmod +x /run.sh
+  rm -rf /tmp/* && \
+  echo '#!/bin/sh\n\
+echo "=== bound to port 8000: $(hostname -I) ==="\n\
+/opt/acestream/start-engine --client-console & \n\
+python /app/acehttp.py\n\
+' > /run.sh && \
+  chmod +x /run.sh
 
 EXPOSE 8000
-ENTRYPOINT ["/bin/sh", "/run.sh"]
+ENTRYPOINT ["/run.sh"]
 
