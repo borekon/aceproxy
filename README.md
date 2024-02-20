@@ -7,11 +7,13 @@ Docker
 
 2. Launch instance
 
-`docker run --rm -Pi aceproxy`
+`docker run --rm -i -p 8000:8000 aceproxy`
 
-3. Connect to IP of docker machine and port from `docker ps` output
+3.1. For acestream ID: In VLC, open network location `http://<HOST>:8000/pid/<HASH>/stream.mp4`
 
-4. Watch, VLC remote with: http://<HOST>:<PORT>/pid/<HASH>/stream.mp4
+3.2 For torrent-magnet: In VLC, open network location `http://<HOST>:8000/torrent/URLENCODED_URL/FILE_INDEXES/DEVELOPER_ID/AFFILIATE_ID/ZONE_ID/STREAM_ID/video_file_name.extension`
+
+Everything except URLENCODED_URL is optional. FILE_INDEXES count begins with 0. Video extension could be one of the following: `'.3gp', '.avi', '.flv', '.mkv', '.mov', '.mp4', '.mpeg', '.mpg', '.ogv', '.ts'`
 
 AceProxy: Ace Stream HTTP Proxy
 ===============================
