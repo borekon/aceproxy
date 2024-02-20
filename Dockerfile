@@ -7,7 +7,7 @@ COPY . /app
 
 RUN apt-get -y update
 RUN apt-get -y install -y wget python python-pip python-dev python-requests python-setuptools python-m2crypto python-apsw libssl1.0.0 libssl-dev libxslt1-dev 
-RUN pip -U rdflib
+RUN pip install -U rdflib
 RUN mkdir -p /opt/acestream && \
 WORKDIR /opt/acestream
 RUN wget https://vivancos.eu/files/acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
