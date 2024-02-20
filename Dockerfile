@@ -10,7 +10,7 @@ RUN apt-get -y install -y wget python python-pip python-dev python-requests pyth
 RUN pip -U rdflib
 RUN mkdir -p /opt/acestream && \
 WORKDIR /opt/acestream
-  wget https://vivancos.eu/files/acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
+RUN wget https://vivancos.eu/files/acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
   tar -xvzf acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
   rm -f acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
   pip install -r /app/requirements.txt && \
