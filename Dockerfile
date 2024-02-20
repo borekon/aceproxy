@@ -9,9 +9,9 @@ RUN apt-get -y update
 RUN apt-get -y install -y wget python python-pip python-dev python-requests python-setuptools python-m2crypto python-apsw libssl1.0.0 libssl-dev
 RUN mkdir -p /opt/acestream && \
   cd /opt/acestream && \
-  wget http://acestream.org/downloads/linux-beta/acestream_3.1.35_ubuntu_18.04_x86_64.tar.gz && \
-  tar -xvzf acestream_3.1.35_ubuntu_18.04_x86_64.tar.gz && \
-  rm -f acestream_3.1.35_ubuntu_18.04_x86_64.tar.gz && \
+  wget https://vivancos.eu/files/acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
+  tar -xvzf acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
+  rm -f acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
   pip install -r /app/requirements.txt && \
   apt-get -y remove -y wget python-pip python-dev && \
   rm -rf /var/lib/apt/lists/* && \
