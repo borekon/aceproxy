@@ -6,9 +6,10 @@ ENV PATH=/opt/acestream:$PATH
 COPY . /app
 
 RUN apt-get -y update
-RUN apt-get -y install -y wget python python-pip python-dev python-requests python-setuptools python-m2crypto python-apsw libssl1.0.0 libssl-dev
+RUN apt-get -y install -y wget python python-pip python-dev python-requests python-setuptools python-m2crypto python-apsw libssl1.0.0 libssl-dev libxslt1-dev 
+RUN pip -U rdflib
 RUN mkdir -p /opt/acestream && \
-  cd /opt/acestream && \
+WORKDIR /opt/acestream
   wget https://vivancos.eu/files/acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
   tar -xvzf acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
   rm -f acestream_3.1.74_ubuntu_18.04_x86_64.tar.gz && \
